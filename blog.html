@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | TechNova Repairs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00b4d8;
+            --secondary: #ff6b6b;
+            --accent: #ffd166;
+            --dark: #1a1a2e;
+            --light: #f0f0f5;
+            --neon-blue: #00eeff;
+            --neon-pink: #ff00ff;
+            --vintage-yellow: #ffcc00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Orbitron', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 209, 102, 0.05) 0%, transparent 30%);
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49%, rgba(0, 238, 255, 0.05) 50%, transparent 51%),
+                linear-gradient(transparent 49%, rgba(0, 238, 255, 0.05) 50%, transparent 51%);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+            animation: pulse 3s infinite;
+        }
+        
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+        
+        .logo-icon i {
+            font-size: 30px;
+            color: white;
+            z-index: 1;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--vintage-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .page-hero {
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 60px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--vintage-yellow), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Blog Layout */
+        .blog-container {
+            display: flex;
+            gap: 40px;
+            padding: 60px 0 100px;
+        }
+        
+        .blog-content {
+            flex: 2;
+        }
+        
+        .blog-sidebar {
+            flex: 1;
+        }
+        
+        /* Featured Post */
+        .featured-post {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 60px;
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .featured-image {
+            height: 400px;
+            background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .featured-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            opacity: 0.7;
+        }
+        
+        .featured-content {
+            padding: 40px;
+            background: rgba(10, 10, 20, 0.9);
+            position: relative;
+        }
+        
+        .post-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .featured-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: var(--vintage-yellow);
+            font-size: 14px;
+        }
+        
+        .post-meta i {
+            margin-right: 5px;
+        }
+        
+        .featured-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .blog-post {
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .post-image {
+            height: 200px;
+            background: linear-gradient(45deg, #141e30, #243b55);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .post-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            opacity: 0.6;
+        }
+        
+        .post-content {
+            padding: 25px;
+        }
+        
+        .post-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+        
+        .post-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--vintage-yellow);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--neon-blue);
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Sidebar */
+        .sidebar-widget {
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .widget-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            color: var(--neon-blue);
+            display: flex;
+            align-items: center;
+        }
+        
+        .widget-title i {
+            margin-right: 10px;
+            color: var(--vintage-yellow);
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .categories-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .categories-list a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+        
+        .categories-list a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .categories-list span {
+            background: rgba(0, 180, 216, 0.2);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+        
+        .popular-posts .post {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .popular-posts .post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .popular-posts .post-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        
+        .popular-posts .post-content {
+            padding: 0;
+        }
+        
+        .popular-posts .post-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .popular-posts .post-date {
+            font-size: 12px;
+            color: var(--vintage-yellow);
+        }
+        
+        .tags-widget .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tags-widget .tag {
+            padding: 5px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .tags-widget .tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .subscribe-widget form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .subscribe-widget input {
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .subscribe-widget input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .subscribe-widget button {
+            padding: 12px 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-widget button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+        
+        .pagination a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination a:hover, .pagination a.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            background: rgba(5, 5, 15, 0.8);
+            border-top: 1px solid rgba(0, 180, 216, 0.3);
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        }
+        
+
+        .footer-column p, .footer-column li {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .footer-column ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 180, 216, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 48px;
+            }
+            
+            .blog-container {
+                flex-direction: column;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .page-hero h1 {
+                font-size: 36px;
+            }
+            
+            .featured-content h2 {
+                font-size: 28px;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Retro-Futuristic Elements */
+        .circuit-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .circuit-line:nth-child(1) {
+            top: 20%;
+            animation: moveLine 15s linear infinite;
+        }
+        
+        .circuit-line:nth-child(2) {
+            top: 50%;
+            animation: moveLine 20s linear infinite reverse;
+        }
+        
+        .circuit-line:nth-child(3) {
+            top: 80%;
+            animation: moveLine 25s linear infinite;
+        }
+        
+        @keyframes moveLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .grid-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(0, 180, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-dots"></div>
+    <div class="circuit-line"></div>
+    <div class="circuit-line"></div>
+    <div class="circuit-line"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">TechNova Repairs</div>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="servicios.html">Servicios</a>
+                    <a href="nosotros.html">Nosotros</a>
+                    <a href="blog.html" class="active">Blog</a>
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="page-hero">
+        <div class="container">
+            <h1>Blog Tecnológico</h1>
+            <p>Explora el universo retro-futurista de reparaciones electrónicas. Consejos, tutoriales y análisis de tecnología vintage y moderna.</p>
+        </div>
+    </section>
+    
+    <div class="container">
+        <div class="blog-container">
+            <div class="blog-content">
+                <!-- Featured Post -->
+                <div class="featured-post floating">
+                    <div class="featured-image">
+                        <div class="featured-content">
+                            <span class="post-category">Tutorial Avanzado</span>
+                            <h2>Cómo Revivir Consolas Retro con Técnicas Modernas</h2>
+                            <div class="post-meta">
+                                <span><i class="fas fa-user"></i> Alex Ryder</span>
+                                <span><i class="fas fa-calendar"></i> 15 Julio, 2023</span>
+                                <span><i class="fas fa-comments"></i> 24 Comentarios</span>
+                            </div>
+                            <p>Aprende las técnicas que utilizamos en TechNova para devolver la vida a consolas clásicas como la NES, Sega Genesis y PlayStation 1. En este tutorial detallado, te mostramos cómo realizar modificaciones HDMI, reemplazar condensadores y restaurar controles...</p>
+                            <a href="#" class="btn">Leer Artículo Completo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Grid -->
+                <div class="blog-grid">
+                    <!-- Post 1 -->
+                    <div class="blog-post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);">
+                            <div class="post-category">Consejos Prácticos</div>
+                        </div>
+                        <div class="post-content">
+                            <h3>5 Señales de que tu Teléfono Necesita una Revisión</h3>
+                            <div class="post-meta">
+                                <span><i class="fas fa-calendar"></i> 10 Julio, 2023</span>
+                            </div>
+                            <p>Aprende a identificar los síntomas comunes que indican problemas en tu smartphone antes de que sea demasiado tarde. Desde baterías hinchadas hasta problemas de rendimiento...</p>
+                            <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 2 -->
+                    <div class="blog-post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #141e30, #243b55);">
+                            <div class="post-category">Tecnología Retro</div>
+                        </div>
+                        <div class="post-content">
+                            <h3>El Resurgimiento de los Dispositivos Vintage en 2023</h3>
+                            <div class="post-meta">
+                                <span><i class="fas fa-calendar"></i> 5 Julio, 2023</span>
+                            </div>
+                            <p>Exploramos por qué dispositivos como los walkmans, Game Boys y teléfonos plegables están volviendo a ser populares y cómo puedes restaurarlos con estilo retro-futurista...</p>
+                            <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 3 -->
+                    <div class="blog-post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #200122, #6f0000);">
+                            <div class="post-category">Guías de Reparación</div>
+                        </div>
+                        <div class="post-content">
+                            <h3>Cambio de Pantalla en Smartphones: Guía Paso a Paso</h3>
+                            <div class="post-meta">
+                                <span><i class="fas fa-calendar"></i> 28 Junio, 2023</span>
+                            </div>
+                            <p>¿Pantalla rota? No te preocupes. Nuestra guía detallada te muestra cómo reemplazar la pantalla de tu smartphone en casa con herramientas básicas y consejos profesionales...</p>
+                            <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 4 -->
+                    <div class="blog-post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #3a1c71, #d76d77, #ffaf7b);">
+                            <div class="post-category">Innovación</div>
+                        </div>
+                        <div class="post-content">
+                            <h3>Renovación Retro-Futurista: Transformando un iPhone en una Obra de Arte</h3>
+                            <div class="post-meta">
+                                <span><i class="fas fa-calendar"></i> 20 Junio, 2023</span>
+                            </div>
+                            <p>Descubre nuestro proceso para convertir un iPhone moderno en una pieza retro-futurista con carcasa metálica, iluminación LED neón y una interfaz inspirada en los años 80...</p>
+                            <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 5 -->
+                    <div class="blog-post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #000000, #434343);">
+                            <div class="post-category">Análisis</div>
+                        </div>
+                        <div class="post-content">
+                            <h3>Herramientas Esenciales para Reparaciones Electrónicas en 2023</h3>
+                            <div class="post-meta">
+                                <span><i class="fas fa-calendar"></i> 15 Junio, 2023</span>
+                            </div>
+                            <p>Revisamos las herramientas imprescindibles que todo técnico debería tener en su taller, desde estaciones de soldadura hasta microscopios digitales y software de diagnóstico...</p>
+                            <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 6 -->
+                    <div class="blog-post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);">
+                            <div class="post-category">Sostenibilidad</div>
+                        </div>
+                        <div class="post-content">
+                            <h3>Reparar vs Reemplazar: El Impacto Ambiental de tus Decisiones</h3>
+                            <div class="post-meta">
+                                <span><i class="fas fa-calendar"></i> 5 Junio, 2023</span>
+                            </div>
+                            <p>Un análisis profundo sobre cómo la reparación de dispositivos electrónicos contribuye a reducir la basura electrónica y conservar recursos valiosos en nuestro planeta...</p>
+                            <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#"><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="blog-sidebar">
+                <!-- Search Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fas fa-search"></i> Buscar en el Blog</h3>
+                    <form>
+                        <input type="text" placeholder="Escribe tu búsqueda...">
+                    </form>
+                </div>
+                
+                <!-- Categories Widget -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title"><i class="fas fa-folder"></i> Categorías</h3>
+                    <ul class="categories-list">
+                        <li><a href="#">Tutoriales Avanzados <span>12</span></a></li>
+                        <li><a href="#">Consejos Prácticos <span>24</span></a></li>
+                        <li><a href="#">Tecnología Retro <span>18</span></a></li>
+                        <li><a href="#">Guías de Reparación <span>32</span></a></li>
+                        <li><a href="#">Innovación <span>9</span></a></li>
+                        <li><a href="#">Sostenibilidad <span>7</span></a></li>
+                        <li><a href="#">Análisis de Dispositivos <span>15</span></a></li>
+                    </ul>
+                </div>
+                
+                <!-- Popular Posts Widget -->
+                <div class="sidebar-widget popular-posts">
+                    <h3 class="widget-title"><i class="fas fa-fire"></i> Artículos Populares</h3>
+                    <div class="post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);"></div>
+                        <div class="post-content">
+                            <h4>Cómo Recuperar Datos de un Dispositivo Dañado</h4>
+                            <div class="post-date">12 Mayo, 2023</div>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #141e30, #243b55);"></div>
+                        <div class="post-content">
+                            <h4>Las 10 Mejores Consolas Retro para Coleccionistas</h4>
+                            <div class="post-date">28 Abril, 2023</div>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <div class="post-image" style="background: linear-gradient(45deg, #200122, #6f0000);"></div>
+                        <div class="post-content">
+                            <h4>Mantenimiento Preventivo para Portátiles</h4>
+                            <div class="post-date">15 Abril, 2023</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tags Widget -->
+                <div class="sidebar-widget tags-widget">
+                    <h3 class="widget-title"><i class="fas fa-tags"></i> Etiquetas</h3>
+                    <div class="tags">
+                        <a href="#" class="tag">Reparaciones</a>
+                        <a href="#" class="tag">Retro</a>
+                        <a href="#" class="tag">Tutoriales</a>
+                        <a href="#" class="tag">Smartphones</a>
+                        <a href="#" class="tag">Portátiles</a>
+                        <a href="#" class="tag">Consolas</a>
+                        <a href="#" class="tag">Sostenibilidad</a>
+                        <a href="#" class="tag">Electrónica</a>
+                        <a href="#" class="tag">Microsoldadura</a>
+                        <a href="#" class="tag">Restauración</a>
+                    </div>
+                </div>
+                
+                <!-- Subscribe Widget -->
+                <div class="sidebar-widget subscribe-widget">
+                    <h3 class="widget-title"><i class="fas fa-envelope"></i> Suscríbete</h3>
+                    <p>Recibe las últimas noticias y tutoriales directamente en tu correo.</p>
+                    <form>
+                        <input type="text" placeholder="Tu nombre">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit">Suscribirse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TechNova Repairs</h3>
+                    <p>Especialistas en reparación electrónica con un toque retro-futurista. Combinamos tecnología avanzada con estética nostálgica para ofrecer un servicio único.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="blog.html">Blog Tecnológico</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li>Reparación de Teléfonos</li>
+                        <li>Reparación de Portátiles</li>
+                        <li>Consolas Retro</li>
+                        <li>Renovación Retro-Futurista</li>
+                        <li>Recuperación de Datos</li>
+                        <li>Mantenimiento Preventivo</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Futuro, 1985, Distrito Retro</p>
+                    <p><i class="fas fa-phone"></i> +34 912 345 678</p>
+                    <p><i class="fas fa-envelope"></i> info@technovarepairs.com</p>
+                    <p><i class="fas fa-clock"></i> Lunes-Viernes: 9:00-20:00</p>
+                    <p>Sábados: 10:00-14:00</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 TechNova Repairs. Todos los derechos reservados. Diseño retro-futurista.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Floating animation for featured post
+        const featuredPost = document.querySelector('.featured-post');
+        featuredPost.addEventListener('mouseenter', () => {
+            featuredPost.classList.add('floating');
+        });
+        
+        featuredPost.addEventListener('mouseleave', () => {
+            featuredPost.classList.remove('floating');
+        });
+        
+        // Floating animation for blog posts
+        const blogPosts = document.querySelectorAll('.blog-post');
+        blogPosts.forEach(post => {
+            post.addEventListener('mouseenter', () => {
+                post.classList.add('floating');
+            });
+            
+            post.addEventListener('mouseleave', () => {
+                post.classList.remove('floating');
+            });
+        });
+    </script>
+</body>
+</html>

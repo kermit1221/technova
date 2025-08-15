@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova Repairs | Reparaciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00b4d8;
+            --secondary: #ff6b6b;
+            --accent: #ffd166;
+            --dark: #1a1a2e;
+            --light: #f0f0f5;
+            --neon-blue: #00eeff;
+            --neon-pink: #ff00ff;
+            --vintage-yellow: #ffcc00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Orbitron', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 209, 102, 0.05) 0%, transparent 30%);
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49%, rgba(0, 238, 255, 0.05) 50%, transparent 51%),
+                linear-gradient(transparent 49%, rgba(0, 238, 255, 0.05) 50%, transparent 51%);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+            animation: pulse 3s infinite;
+        }
+        
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+        
+        .logo-icon i {
+            font-size: 30px;
+            color: white;
+            z-index: 1;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--vintage-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-text h1 {
+            font-size: 60px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--vintage-yellow), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-text h1 span {
+            display: block;
+            font-size: 40px;
+            color: var(--light);
+            background: none;
+            -webkit-text-fill-color: var(--light);
+        }
+        
+        .hero-text p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 600px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .retro-device {
+            width: 300px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(40, 40, 60, 0.9));
+            border-radius: 20px;
+            border: 2px solid rgba(0, 180, 216, 0.5);
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
+            transform: perspective(1000px) rotateY(-10deg);
+            overflow: hidden;
+        }
+        
+        .device-screen {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 80px;
+            background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        .screen-content {
+            text-align: center;
+            color: var(--neon-blue);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .screen-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .screen-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(0, 238, 255, 0.8);
+        }
+        
+        .device-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .device-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 180, 216, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-blue);
+            font-size: 20px;
+            box-shadow: 0 0 10px rgba(0, 180, 216, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .device-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--neon-blue), var(--vintage-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--vintage-yellow));
+            z-index: -1;
+            border-radius: 17px;
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--primary);
+            border: 2px solid rgba(0, 180, 216, 0.5);
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+        
+        .service-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* Featured Section */
+        .featured {
+            padding: 100px 0;
+            background: rgba(10, 10, 20, 0.5);
+            position: relative;
+        }
+        
+        .featured-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .featured-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .retro-phone {
+            width: 100%;
+            max-width: 350px;
+            height: 600px;
+            background: linear-gradient(135deg, #2d3436, #000000);
+            border-radius: 40px;
+            border: 3px solid rgba(255, 209, 102, 0.5);
+            position: relative;
+            box-shadow: 0 0 30px rgba(255, 209, 102, 0.3);
+            margin: 0 auto;
+            transform: perspective(1000px) rotateY(10deg);
+            overflow: hidden;
+        }
+        
+        .phone-screen {
+            position: absolute;
+            top: 40px;
+            left: 15px;
+            right: 15px;
+            bottom: 40px;
+            background: linear-gradient(45deg, #141e30, #243b55);
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        .phone-content {
+            text-align: center;
+            color: var(--vintage-yellow);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .phone-content h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .phone-content ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        .phone-content ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .phone-content ul li::before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: var(--neon-pink);
+        }
+        
+        .featured-text {
+            flex: 1;
+        }
+        
+        .featured-text h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--vintage-yellow), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .featured-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            background: rgba(5, 5, 15, 0.8);
+            border-top: 1px solid rgba(0, 180, 216, 0.3);
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        }
+        
+        .footer-column p, .footer-column li {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .footer-column ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 180, 216, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content, .featured-content {
+                flex-direction: column;
+            }
+            
+            .hero-text h1 {
+                font-size: 48px;
+            }
+            
+            .hero-text h1 span {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            
+            .hero-text h1 span {
+                font-size: 24px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .featured-text h2 {
+                font-size: 32px;
+            }
+        }
+        
+        /* Retro-Futuristic Elements */
+        .circuit-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .circuit-line:nth-child(1) {
+            top: 20%;
+            animation: moveLine 15s linear infinite;
+        }
+        
+        .circuit-line:nth-child(2) {
+            top: 50%;
+            animation: moveLine 20s linear infinite reverse;
+        }
+        
+        .circuit-line:nth-child(3) {
+            top: 80%;
+            animation: moveLine 25s linear infinite;
+        }
+        
+        @keyframes moveLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .grid-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(0, 180, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-dots"></div>
+    <div class="circuit-line"></div>
+    <div class="circuit-line"></div>
+    <div class="circuit-line"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">TechNova Repairs</div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#" class="active">Inicio</a>
+                    <a href="servicios.html" >Servicios</a>
+                    <a href="../programas/nosotros.html">Nosotros</a>
+                    <a href="../programas/blog.html">Blog</a>
+                    <a href="../programas/contacto.html">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>REPARACIONES <span>DE CALIDAD</span></h1>
+                    <p>Recuperamos la vida de tus dispositivos electrónicos con un toque de profecionalismo y calidad. Desde teléfonos convencionales hasta las últimas novedades tecnológicas, nuestro equipo experto combina la sencilles con soluciones innovadoras.</p>
+                    <a href="../programas/contacto.html" class="btn">Diagnóstico Gratis</a>
+                </div>
+                <div class="hero-image">
+                    <div class="retro-device floating">
+                        <div class="device-screen">
+                            <div class="screen-content">
+                                <h3>TECHNOVA REPAIRS</h3>
+                                <p> Bienvenido a un servicio de calidad</p>
+                                <p> Reparaciones de precisión</p>
+                                <p> Componentes de calidad</p>
+                                <p> Garantía de 1 año</p>
+                            </div>
+                        </div>
+                        <div class="device-buttons">
+                            <div class="device-btn"><i class="fas fa-power-off"></i></div>
+                            <div class="device-btn"><i class="fas fa-cog"></i></div>
+                            <div class="device-btn"><i class="fas fa-bolt"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Reparación de Teléfonos</h3>
+                    <p>Pantallas rotas, baterías agotadas, problemas de carga y más. Reparamos todas las marcas y modelos con componentes de primera calidad.</p>
+                    <a href="../programas/servicios.html" class="btn">Más Info</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Reparación de Portátiles</h3>
+                    <p>Problemas de hardware, pantallas, teclados, sobrecalentamiento y actualizaciones. Devuelve la vida a tu equipo informático.</p>
+                    <a href="../programas/servicios.html" class="btn">Más Info</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Consolas</h3>
+                    <p>Especialistas en recuperar consolas clásicas. Desde NES hasta PlayStation 1, hacemos que vuelvan a funcionar como nuevas.</p>
+                    <a href="../programas/servicios.html" class="btn">Más Info</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="featured">
+        <div class="container">
+            <div class="featured-content">
+                <div class="featured-image">
+                    <div class="retro-phone floating">
+                        <div class="phone-screen">
+                            <div class="phone-content">
+                                <h3>OFERTA ESPECIAL</h3>
+                                <p>¡Lleva tu dispositivo antiguo o dañado y dale una nueva vida con nuestro paquete renovación!</p>
+                                <ul>
+                                    <li>Limpieza profunda interior</li>
+									<li>Actualización de componentes clave</li>
+                                    <li>Garantía extendida de 18 meses</li>
+                                    <li>Certificado de autenticidad</li>
+                                </ul>
+                                <p style="margin-top: 20px; color: var(--neon-pink);">SOLO POR TIEMPO LIMITADO</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-text">
+                    <h2>Renovación de dispositivos</h2>
+                    <p>En TechNova Repairs no solo reparamos, reinventamos. Nuestro servicio exclusivo de renovación combina lo mejor de dos eras: la artesanía de antaño con la tecnología del futuro.</p>
+                    <a href="../programas/servicios.html#renovacion" class="btn">Descubre Más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TechNova Repairs</h3>
+                    <p>Especialistas en reparación electrónicas.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="../programas/nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="../programas/blog.html">Blog Tecnológico</a></li>
+                        <li><a href="../programas/contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li>Reparación de Teléfonos</li>
+                        <li>Reparación de Portátiles</li>
+                        <li>Consolas Retro</li>
+                        <li>Recuperación de Datos</li>
+                        <li>Mantenimiento Preventivo</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle sexta,zona centro</p>
+                    <p><i class="fas fa-phone"></i> +34 912 345 678</p>
+                    <p><i class="fas fa-envelope"></i> info@technovarepairs.com</p>
+                    <p><i class="fas fa-clock"></i> Lunes-Viernes: 9:00-20:00</p>
+                    <p>Sábados: 10:00-14:00</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TechNova Repairs. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

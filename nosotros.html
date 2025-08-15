@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | TechNova Repairs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00b4d8;
+            --secondary: #ff6b6b;
+            --accent: #ffd166;
+            --dark: #1a1a2e;
+            --light: #f0f0f5;
+            --neon-blue: #00eeff;
+            --neon-pink: #ff00ff;
+            --vintage-yellow: #ffcc00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Orbitron', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 180, 216, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(255, 209, 102, 0.05) 0%, transparent 30%);
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49%, rgba(0, 238, 255, 0.05) 50%, transparent 51%),
+                linear-gradient(transparent 49%, rgba(0, 238, 255, 0.05) 50%, transparent 51%);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+            animation: pulse 3s infinite;
+        }
+        
+        .logo-icon::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            opacity: 0.5;
+        }
+        
+        .logo-icon i {
+            font-size: 30px;
+            color: white;
+            z-index: 1;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--vintage-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .page-hero {
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 60px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--vintage-yellow), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--neon-blue), var(--vintage-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+        }
+        
+        .about-text p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+        
+        .retro-terminal {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(40, 40, 60, 0.9));
+            border-radius: 20px;
+            border: 2px solid rgba(0, 180, 216, 0.5);
+            position: relative;
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
+            overflow: hidden;
+        }
+        
+        .terminal-screen {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: #0a0a12;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            color: var(--neon-blue);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        
+        .terminal-line {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        
+        .terminal-prompt {
+            color: var(--vintage-yellow);
+            margin-right: 10px;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: rgba(10, 10, 20, 0.5);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 180, 216, 0.3), rgba(255, 107, 107, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .team-member:hover .member-image::before {
+            opacity: 1;
+        }
+        
+        .team-member h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--neon-blue);
+        }
+        
+        .team-member p.position {
+            color: var(--vintage-yellow);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .team-member p.bio {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .member-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+        
+        .member-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Values Section */
+        .values {
+            padding: 80px 0;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .value-card {
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: var(--primary);
+            border: 2px solid rgba(0, 180, 216, 0.5);
+        }
+        
+        .value-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--neon-blue);
+        }
+        
+        .value-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* History Section */
+        .history {
+            padding: 100px 0;
+            background: rgba(10, 10, 20, 0.5);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--neon-blue), var(--neon-pink));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: rgba(30, 30, 46, 0.7);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .timeline-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--vintage-yellow);
+        }
+        
+        .timeline-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        .timeline-date {
+            font-weight: 700;
+            color: var(--neon-blue);
+            margin-bottom: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            background: rgba(5, 5, 15, 0.8);
+            border-top: 1px solid rgba(0, 180, 216, 0.3);
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+        }
+        
+        .footer-column p, .footer-column li {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .footer-column ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 180, 216, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 48px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 21px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .page-hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+        
+        /* Retro-Futuristic Elements */
+        .circuit-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .circuit-line:nth-child(1) {
+            top: 20%;
+            animation: moveLine 15s linear infinite;
+        }
+        
+        .circuit-line:nth-child(2) {
+            top: 50%;
+            animation: moveLine 20s linear infinite reverse;
+        }
+        
+        .circuit-line:nth-child(3) {
+            top: 80%;
+            animation: moveLine 25s linear infinite;
+        }
+        
+        @keyframes moveLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .grid-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(0, 180, 216, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="grid-dots"></div>
+    <div class="circuit-line"></div>
+    <div class="circuit-line"></div>
+    <div class="circuit-line"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="logo-text">TechNova Repairs</div>
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="servicios.html">Servicios</a>
+                    <a href="nosotros.html" class="active">Nosotros</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="page-hero">
+        <div class="container">
+            <h1>Nuestra Historia</h1>
+            <p>Desde 1985 combinando la artesanía clásica de reparación con la visión futurista de la tecnología. Conoce nuestro viaje a través del tiempo.</p>
+        </div>
+    </section>
+    
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Visión Retro-Futurista</h3>
+                    <p>En TechNova Repairs creemos que el futuro que imaginaron en los años 80 está a nuestro alcance. Combinamos la estética nostálgica de la era dorada de la tecnología con las soluciones más avanzadas de hoy.</p>
+                    <p>Nuestro fundador, Alex Ryder, comenzó reparando radios de transistores y televisores de tubo en su garaje. Hoy lideramos un equipo de expertos apasionados por devolver la vida a dispositivos de todas las épocas.</p>
+                    <p>Lo que nos diferencia es nuestro enfoque único: no solo reparamos, sino que reinventamos, manteniendo el alma de cada dispositivo mientras lo equipamos para el futuro.</p>
+                    <a href="contacto.html" class="btn">Únete a Nosotros</a>
+                </div>
+                <div class="about-image">
+                    <div class="retro-terminal floating">
+                        <div class="terminal-screen">
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">>_</span>
+                                <span>Bienvenido a TECHNOVA SYSTEMS</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">>_</span>
+                                <span>Cargando datos corporativos...</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">>_</span>
+                                <span>Año de fundación: 1985</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">>_</span>
+                                <span>Reparaciones completadas: 24,719</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">>_</span>
+                                <span>Clientes satisfechos: 99.7%</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">>_</span>
+                                <span>Filosofía: "El futuro recordado"</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">>_</span>
+                                <span>Sistema listo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="history">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestra Línea de Tiempo</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">1985</div>
+                        <h3>Humble Beginnings</h3>
+                        <p>Alex Ryder abre un pequeño taller de reparación de radios y televisores en el centro de la ciudad, con una visión futurista de la tecnología.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">1992</div>
+                        <h3>Primera Computadora</h3>
+                        <p>Reparamos nuestra primera computadora personal, una Commodore 64, marcando el inicio de nuestra especialización en electrónica digital.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">1999</div>
+                        <h3>Cambio de Milenio</h3>
+                        <p>Expandimos nuestro taller y comenzamos a ofrecer reparaciones de dispositivos móviles, anticipando la revolución que se avecinaba.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2007</div>
+                        <h3>Era Smartphone</h3>
+                        <p>Nos convertimos en uno de los primeros talleres certificados para reparar smartphones en el país, combinando técnicas clásicas con nuevas tecnologías.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2015</div>
+                        <h3>Renovación Retro-Futurista</h3>
+                        <p>Lanzamos nuestro servicio exclusivo de renovación retro-futurista, fusionando lo mejor de dos eras en dispositivos únicos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3>Presente y Futuro</h3>
+                        <p>Con un equipo de 15 expertos y miles de clientes satisfechos, continuamos nuestra misión de conectar pasado y futuro a través de la tecnología.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Equipo</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Alex Ryder">
+                    </div>
+                    <h3>Alex Ryder</h3>
+                    <p class="position">Fundador & CEO</p>
+                    <p class="bio">Pionero en reparación electrónica desde los 16 años. Su visión combinó el amor por lo retro con la pasión por la innovación.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Mika Chen">
+                    </div>
+                    <h3>Mika Chen</h3>
+                    <p class="position">Directora Técnica</p>
+                    <p class="bio">Especialista en microsoldadura y recuperación de datos. Puede revivir cualquier dispositivo, por antiguo que sea.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Jamal Wright">
+                    </div>
+                    <h3>Jamal Wright</h3>
+                    <p class="position">Diseñador Retro-Futurista</p>
+                    <p class="bio">Artista y técnico, transforma dispositivos modernos en obras de arte retro-futuristas funcionales.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sophia Müller">
+                    </div>
+                    <h3>Sophia Müller</h3>
+                    <p class="position">Especialista en Consolas</p>
+                    <p class="bio">Conoce cada consola clásica como la palma de su mano. Su colección personal supera las 200 unidades.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitch"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="values">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Valores</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Innovación Nostálgica</h3>
+                    <p>Creemos que el futuro se construye aprendiendo del pasado. Combinamos lo mejor de ambas eras en cada reparación.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Pasión por la Tecnología</h3>
+                    <p>No solo reparamos dispositivos, amamos lo que hacemos. Cada pieza cuenta una historia que merece ser preservada.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Transparencia Total</h3>
+                    <p>Sin sorpresas. Te explicamos cada detalle del problema y la solución, con precios claros desde el principio.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Sostenibilidad</h3>
+                    <p>Reparar es el reciclaje definitivo. Reducimos desechos electrónicos dando nueva vida a los dispositivos.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                    <h3>Comunidad</h3>
+                    <p>Organizamos eventos retro-tech y talleres para compartir nuestro conocimiento con la próxima generación.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Calidad Atemporal</h3>
+                    <p>Usamos componentes de primera calidad que honran la durabilidad de los dispositivos clásicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TechNova Repairs</h3>
+                    <p>Especialistas en reparación electrónica con un toque retro-futurista. Combinamos tecnología avanzada con estética nostálgica para ofrecer un servicio único.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="blog.html">Blog Tecnológico</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li>Reparación de Teléfonos</li>
+                        <li>Reparación de Portátiles</li>
+                        <li>Consolas Retro</li>
+                        <li>Renovación Retro-Futurista</li>
+                        <li>Recuperación de Datos</li>
+                        <li>Mantenimiento Preventivo</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Futuro, 1985, Distrito Retro</p>
+                    <p><i class="fas fa-phone"></i> +34 912 345 678</p>
+                    <p><i class="fas fa-envelope"></i> info@technovarepairs.com</p>
+                    <p><i class="fas fa-clock"></i> Lunes-Viernes: 9:00-20:00</p>
+                    <p>Sábados: 10:00-14:00</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 TechNova Repairs. Todos los derechos reservados. Diseño retro-futurista.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Floating animation for cards on hover
+        const teamMembers = document.querySelectorAll('.team-member');
+        teamMembers.forEach(member => {
+            member.addEventListener('mouseenter', () => {
+                member.classList.add('floating');
+            });
+            
+            member.addEventListener('mouseleave', () => {
+                member.classList.remove('floating');
+            });
+        });
+        
+        // Same for value cards
+        const valueCards = document.querySelectorAll('.value-card');
+        valueCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('floating');
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('floating');
+            });
+        });
+    </script>
+</body>
+</html>
